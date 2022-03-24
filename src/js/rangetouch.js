@@ -6,10 +6,10 @@
 // ==========================================================================
 
 import defaults from './config';
-import { matches } from './utils/css';
-import { trigger } from './utils/events';
+import {matches} from './utils/css';
+import {trigger} from './utils/events';
 import is from './utils/is';
-import { round } from './utils/numbers';
+import {round} from './utils/numbers';
 
 class RangeTouch {
     /**
@@ -30,7 +30,7 @@ class RangeTouch {
             return;
         }
 
-        this.config = { ...defaults, ...options };
+        this.config = {...defaults, ...options};
 
         this.init();
     }
@@ -61,7 +61,7 @@ class RangeTouch {
             return null;
         }
 
-        const config = { ...defaults, ...options };
+        const config = {...defaults, ...options};
 
         if (is.string(target) && config.watch) {
             // Create an observer instance
@@ -155,7 +155,11 @@ class RangeTouch {
         const thumbWidth = ((100 / clientRect.width) * (this.config.thumbWidth / 2)) / 100;
 
         // Determine left percentage
-        percent = (100 / clientRect.width) * (touch.clientX - clientRect.left);
+        if (this.config.vertical) {
+            percent = 100 - 100 / clientRect.height * (touch.clientY - clientRect.top);
+        } else {
+            percent = (100 / clientRect.width) * (touch.clientX - clientRect.left);
+        }
 
         // Don't allow outside bounds
         if (percent < 0) {

@@ -314,3 +314,5 @@ gulp.task('docs', gulp.parallel('docs:readme', 'docs:src', 'docs:svg', 'docs:pat
 
 // Do everything
 gulp.task('deploy', gulp.series(gulp.parallel(...tasks.js, ...tasks.css, ...tasks.sprite), 'cdn', 'docs'));
+
+gulp.task('build', gulp.series(gulp.parallel(...tasks.js, ...tasks.css, ...tasks.sprite)));

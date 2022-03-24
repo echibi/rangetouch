@@ -24,7 +24,8 @@
     },
     "scripts": {
         "lint": "eslint src/js",
-        "deploy": "yarn lint && gulp deploy"
+        "deploy": "yarn lint && gulp deploy",
+        "build": "gulp build"
     },
     "dependencies": {},
     "devDependencies": {
